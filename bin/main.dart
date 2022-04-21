@@ -14,9 +14,10 @@ void main() async {
   
   write("Iltimos note ni nomini kiriting: ");
   title = read();
-  String note = await fileService.readFile(title);
+  Note note = await fileService.readFile(title);
   print(note);
 
+  // String path = await fileService.createFile(title);
   // writeln("Note ni yozishingiz mumkin(Yozib tugatganingizda 'Save' so'zini yozsangiz note saqlab qo'yiladi)");
   // while(exit != "Save") {
   //   exit = read();

@@ -18,4 +18,9 @@ class Note {
     'content': content,
     'time': time,
   };
+
+  @override
+  String toString() {
+    return "Title: $title\nContent: $content";
+  }
 }

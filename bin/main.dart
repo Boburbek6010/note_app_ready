@@ -1,18 +1,14 @@
-import 'dart:io';
 import 'package:note_app/services/data_service.dart';
 import 'package:note_app/services/io_service.dart';
+import 'package:note_app/services/ext_service.dart';
 
 void main() async {
 
   DataService dataService = DataService();
   await dataService.init();
 
-  writeln("Qaysi ma'lumotni o'chirmoqchisiz?: ");
-  String text = read();
-  
-  dataService.deleteData(key: text).then((value) {
-    writeln(value);
-  });
+  String exit = "";
+  writeln(await dataService.readData(key: "test"));
 }
 
 /*

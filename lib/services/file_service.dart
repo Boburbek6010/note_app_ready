@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:note_app/models/note_model.dart';
 
@@ -25,8 +26,21 @@ class FileService {
   Future<String> writeFile(Note note, String path) async {
     File file = File(path);
     //KRIPTOGRAFIC CODE => ENICODE
-    await file.writeAsString("${note.title}\n${note.content}");
+    await file.writeAsString(jsonEncode(note.toJson()));
     await file.setLastModified(DateTime.parse(note.time));
     return file.path;
+  }
+
+  Future<Note> readFile(String title) async {
+    File file = File(directory.path + "\\$title.note");
+    bool isFileCreated = await file.exists();
+    if(!isFileCreated) {
+      /// this below code will be edited when I set language service
+      throw Exception("File not found");
+    }
+
+    String result = await file.readAsString();
+    Note note = Note.fromJson(jsonDecode(result));
+    return note;
   }
 }

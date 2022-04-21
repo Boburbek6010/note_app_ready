@@ -14,18 +14,19 @@ void main() async {
   
   write("Iltimos note ni nomini kiriting: ");
   title = read();
-  String path = await fileService.createFile(title);
+  String note = await fileService.readFile(title);
+  print(note);
 
-  writeln("Note ni yozishingiz mumkin(Yozib tugatganingizda 'Save' so'zini yozsangiz note saqlab qo'yiladi)");
-  while(exit != "Save") {
-    exit = read();
-    if(exit == "Save") {
-      break;
-    }
-    content += (exit + "\n");
-  }
-  
-  Note note = Note(title: title, content: content);
-
-  await fileService.writeFile(note, path).then((value) => print("Note muvofaqiyatli saqlandi"));
+  // writeln("Note ni yozishingiz mumkin(Yozib tugatganingizda 'Save' so'zini yozsangiz note saqlab qo'yiladi)");
+  // while(exit != "Save") {
+  //   exit = read();
+  //   if(exit == "Save") {
+  //     break;
+  //   }
+  //   content += (exit + "\n");
+  // }
+  //
+  // Note note = Note(title: title, content: content);
+  //
+  // await fileService.writeFile(note, path).then((value) => print("Note muvofaqiyatli saqlandi"));
 }

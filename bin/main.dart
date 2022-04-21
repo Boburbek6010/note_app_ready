@@ -14,7 +14,8 @@ void main() async {
   
   write("Iltimos note ni nomini kiriting: ");
   title = read();
-  
+  String path = await fileService.createFile(title);
+
   writeln("Note ni yozishingiz mumkin(Yozib tugatganingizda 'Save' so'zini yozsangiz note saqlab qo'yiladi)");
   while(exit != "Save") {
     exit = read();
@@ -25,16 +26,6 @@ void main() async {
   }
   
   Note note = Note(title: title, content: content);
-  await fileService.createFile(note).then((value) => print("Note muvofaqiyatli saqlandi"));
+
+  await fileService.writeFile(note, path).then((value) => print("Note muvofaqiyatli saqlandi"));
 }
-
-/*
-//this function done
-await database.storeString('action', 'Start');
-
-//Home task
-await database.storeInt('counter', 10);
-await database.storeBool('repeat', true);
-await database.storeDouble('decimal', 1.5);
-await database.storeStringList('items', <String>['Earth', 'Moon', 'Sun']);
- */
